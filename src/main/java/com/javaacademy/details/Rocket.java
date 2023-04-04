@@ -1,5 +1,8 @@
 package com.javaacademy.details;
 
+import com.javaacademy.exceptions.LimitFuelException;
+import com.javaacademy.exceptions.NotEnoughFuelException;
+
 /**
  * Ракета носитель
  */
@@ -11,15 +14,22 @@ public class Rocket {
     //Двигатель третьей стадии
     private Engine thirdStage;
 
-    public Rocket(double fuelStageOne, double fuelStageTwo, double fuelStageThree) {
+    public Rocket(double fuelStageOne, double fuelStageTwo, double fuelStageThree) throws LimitFuelException {
         this.firstStage = new Engine(fuelStageOne);
         this.secondStage = new Engine(fuelStageTwo);
+        this.thirdStage = new Engine(fuelStageThree);
+    }
+
+    public Rocket(Engine firstStage, Engine secondStage, Engine thirdStage) {
+        this.firstStage = firstStage;
+        this.secondStage = secondStage;
+        this.thirdStage = thirdStage;
     }
 
     /**
      * Запуск ракеты носителя
      */
-    public void run() {
+    public void run() throws NotEnoughFuelException {
         firstStage.start();
         secondStage.start();
         thirdStage.start();

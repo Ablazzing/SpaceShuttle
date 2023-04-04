@@ -4,6 +4,7 @@ import com.javaacademy.Cosmonaut;
 import com.javaacademy.details.LifeCycleItems.JamTube;
 import com.javaacademy.details.LifeCycleItems.OxygenBalloon;
 import com.javaacademy.details.LifeCycleItems.Water;
+import com.javaacademy.exceptions.CosmonautIsNotReadyException;
 
 /**
  * Капсула
@@ -13,15 +14,18 @@ public class Capsule {
     private LifeCycleSystem lifeCycleSystem;
 
     public Capsule(Water water, JamTube jamTube, OxygenBalloon oxygenBalloon) {
-        this.lifeCycleSystem = new LifeCycleSystem(water, jamTube);
+        this.lifeCycleSystem = new LifeCycleSystem(water, jamTube, oxygenBalloon);
     }
 
-    public Cosmonaut getCosmonaut() {
+    public Cosmonaut getCosmonaut() throws CosmonautIsNotReadyException {
+        if (!cosmonaut.isHealthy()) {
+            throw new CosmonautIsNotReadyException("Космоноват не здоров");
+        }
         return cosmonaut;
     }
 
     public void setCosmonaut(Cosmonaut cosmonaut) {
-        cosmonaut.setHealthy(false);
+        //cosmonaut.setHealthy(false);
         this.cosmonaut = cosmonaut;
     }
 
