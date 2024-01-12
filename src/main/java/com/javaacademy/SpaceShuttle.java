@@ -2,6 +2,8 @@ package com.javaacademy;
 
 import com.javaacademy.details.Rocket;
 import com.javaacademy.details.Capsule;
+import com.javaacademy.exceptions.CosmonautIsNotReadyException;
+import com.javaacademy.exceptions.NotEnoughFuelException;
 
 /**
  * Космический корабль
@@ -30,8 +32,13 @@ public class SpaceShuttle {
     /**
      * Запуск шаттла
      */
-    public void run() {
-        capsule.getCosmonaut().phrase();
+    public void run() throws CosmonautIsNotReadyException, NotEnoughFuelException {
+        if (capsule.getCosmonaut().isHealthy()) {
+            rocket.run();
+            capsule.getCosmonaut().phrase();
+            return;
+        }
+        throw new CosmonautIsNotReadyException();
     }
 
     public Rocket getRocket() {

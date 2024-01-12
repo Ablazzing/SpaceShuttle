@@ -5,18 +5,23 @@ import com.javaacademy.details.LifeCycleItems.OxygenBalloon;
 import com.javaacademy.details.LifeCycleItems.Water;
 import com.javaacademy.details.Rocket;
 import com.javaacademy.details.Capsule;
+import com.javaacademy.exceptions.CosmonautIsNotReadyException;
+import com.javaacademy.exceptions.LimitFuelException;
+import com.javaacademy.exceptions.NotEnoughFuelException;
 
 /**
  * Космодром "Байконур"
  */
 public class SpaceShuttleLauncher {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, LimitFuelException,
+            CosmonautIsNotReadyException, NotEnoughFuelException {
         SpaceShuttleLauncher launcher = new SpaceShuttleLauncher();
         SpaceShuttle shuttle = launcher.createShuttle();
         launcher.startFly(shuttle);
     }
 
-    public void startFly(SpaceShuttle spaceShuttle) throws InterruptedException {
+    public void startFly(SpaceShuttle spaceShuttle) throws InterruptedException,
+            CosmonautIsNotReadyException, NotEnoughFuelException {
         System.out.println("Обратный отсчет пошел!");
         Thread.sleep(1000);
         for (int i = 3; i > 0; i--) {
@@ -28,7 +33,7 @@ public class SpaceShuttleLauncher {
         System.out.println("* На заднем фоне играет Эдуард Артемьев - Поход (https://www.youtube.com/watch?v=xVNy38B0Eqg) *");
     }
 
-    public SpaceShuttle createShuttle() {
+    public SpaceShuttle createShuttle() throws LimitFuelException {
         Rocket rocket = new Rocket(300_000, 70_000, 100_000);
 
         Water water = new Water();
