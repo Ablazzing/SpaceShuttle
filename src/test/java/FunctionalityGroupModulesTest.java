@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
 import org.mockito.Mock;
-
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Field;
